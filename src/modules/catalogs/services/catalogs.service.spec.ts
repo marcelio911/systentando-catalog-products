@@ -8,9 +8,10 @@ describe('CatalogsService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [CatalogsService, CatalogsRepository],
-    }).overrideProvider(CatalogsRepository)
-    .useValue({}) // Provide an empty object as the value
-    .compile();
+    })
+      .overrideProvider(CatalogsRepository)
+      .useValue({}) // Provide an empty object as the value
+      .compile();
 
     service = module.get<CatalogsService>(CatalogsService);
   });

@@ -4,7 +4,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ProductsRepository } from '../../../repository/products-repository';
 
 describe('ProductsUnit', () => {
-
   let productService: ProductsService;
 
   beforeEach(async () => {
@@ -40,7 +39,9 @@ describe('ProductsUnit', () => {
       url: 'https://www.shopee.com/product1',
     };
 
-    expect(() => productService.createProduct(productData)).toThrowError('Name is required');
+    expect(() => productService.createProduct(productData)).toThrowError(
+      'Name is required',
+    );
   });
 
   it('should throw an error if url is not valid', () => {
@@ -51,10 +52,12 @@ describe('ProductsUnit', () => {
       supplier: 'Supplier A',
       url: 'https://www.example.com/product1',
       _id: '',
-      createdAt: 0
+      createdAt: 0,
     };
 
-    expect(() => productService.createProduct(productData)).toThrowError('Affiliate URLs are not allowed');
+    expect(() => productService.createProduct(productData)).toThrowError(
+      'Affiliate URLs are not allowed',
+    );
   });
 
   // Adicione mais testes para outros campos obrigatórios e cenários de erro

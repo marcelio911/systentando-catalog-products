@@ -9,7 +9,10 @@ import { CatalogsModule } from './modules/catalogs/catalogs.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal: true, envFilePath: `.env.${process.env.NODE_ENV}` }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: `.env.${process.env.NODE_ENV}`,
+    }),
     MongooseModule.forRoot(
       `mongodb+srv://${encodeURIComponent(
         process.env.USER_DB as string,
@@ -20,7 +23,6 @@ import { CatalogsModule } from './modules/catalogs/catalogs.module';
     ProductsModule,
     SuppliersModule,
     CatalogsModule,
-
   ],
   controllers: [AppController],
   providers: [AppService],

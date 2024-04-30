@@ -8,7 +8,7 @@ describe('CatalogSchema', () => {
       ownerId: '1',
       products: [],
       createdAt: Date.now(),
-    }
+    };
     expect(catalog).toBeDefined();
   });
 });

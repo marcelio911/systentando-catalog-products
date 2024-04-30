@@ -11,7 +11,8 @@ describe('ProductsController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ProductsController],
       providers: [ProductsService, ProductsRepository],
-    }).overrideProvider(ProductsService)
+    })
+      .overrideProvider(ProductsService)
       .useValue({
         getProducts: () => 'Get all products',
         createProduct: () => 'Create a product',
@@ -36,7 +37,7 @@ describe('ProductsController', () => {
       url: 'https://www.shopee.com/product1',
       _id: '',
       thumbnailUrl: undefined,
-      createdAt: 0
+      createdAt: 0,
     };
     expect(controller.createProduct(mock)).toBe('Create a product');
   });

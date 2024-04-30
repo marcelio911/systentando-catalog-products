@@ -7,7 +7,7 @@ describe('CatalogsRepository', () => {
       name: 'Catalog 1',
       ownerId: '1',
       products: [],
-      createdAt: 0
+      createdAt: 0,
     };
     expect(catalog).toBeDefined();
   });

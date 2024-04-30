@@ -12,6 +12,6 @@ import { CatalogsRepository } from './repository/catalogs-repository/catalogs-re
     ]),
   ],
   providers: [CatalogsService, CatalogsRepository],
-  controllers: [CatalogsController]
+  controllers: [CatalogsController],
 })
-export class CatalogsModule { }
+export class CatalogsModule {}

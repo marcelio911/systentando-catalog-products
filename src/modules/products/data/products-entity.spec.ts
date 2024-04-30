@@ -9,7 +9,7 @@ describe('ProductsEntity', () => {
       price: 19.99,
       supplier: 'Supplier A',
       url: 'https://www.example.com/product1',
-      createdAt: 0
+      createdAt: 0,
     };
     expect(product).toBeDefined();
   });

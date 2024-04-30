@@ -7,7 +7,6 @@ import { clc } from '@nestjs/common/utils/cli-colors.util';
 
 import { AppModule } from './app.module';
 
-
 async function bootstrap() {
   const logger = new ConsoleLogger();
 
