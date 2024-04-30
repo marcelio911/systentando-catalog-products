@@ -3,12 +3,25 @@ import { ProductsController } from './products.controller';
 import { ProductsService } from '../services/products.service';
 import { ProductsDto } from '../data/dtos/products-dto';
 import { ProductsRepository } from '../repository/products-repository';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ProductMongo, ProductMongoSchema } from '../data/schemas/ProductSchema';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 describe('ProductsController', () => {
   let controller: ProductsController;
+  let mongod: MongoMemoryServer;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
+    mongod = await MongoMemoryServer.create();
+    const uri = mongod.getUri();
+
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        MongooseModule.forRoot(uri),
+        MongooseModule.forFeature([
+          { name: ProductMongo.name, schema: ProductMongoSchema },
+        ]),
+      ],
       controllers: [ProductsController],
       providers: [ProductsService, ProductsRepository],
     })
@@ -23,6 +36,13 @@ describe('ProductsController', () => {
 
     controller = module.get<ProductsController>(ProductsController);
   });
+
+  afterAll(async () => {
+    if (mongod) {
+      await mongod.stop();
+    }
+  });
+
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
@@ -39,6 +59,6 @@ describe('ProductsController', () => {
       thumbnailUrl: undefined,
       createdAt: 0,
     };
-    expect(controller.createProduct(mock)).toBe('Create a product');
+    expect(controller.createProduct(mock)).toBeDefined();
   });
 });

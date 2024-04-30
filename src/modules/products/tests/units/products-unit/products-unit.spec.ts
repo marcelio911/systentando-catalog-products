@@ -2,15 +2,39 @@ import { ProductsService } from '../../../services/products.service';
 import { ProductSchema } from '../../../data/products-entity';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductsRepository } from '../../../repository/products-repository';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ProductMongo, ProductMongoSchema } from '../../../data/schemas/ProductSchema';
 
 describe('ProductsUnit', () => {
   let productService: ProductsService;
+  let mongod: MongoMemoryServer;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
+    mongod = await MongoMemoryServer.create();
+    const uri = mongod.getUri();
     const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        MongooseModule.forRoot(uri),
+        MongooseModule.forFeature([
+          { name: ProductMongo.name, schema: ProductMongoSchema },
+        ]),
+      ],
       providers: [ProductsService, ProductsRepository],
-    }).compile();
+    })
+      // .overrideProvider(ProductsService)
+      // .useValue({
+      //   createProduct: (productData: ProductSchema) => productData,
+      // })
+      .compile();
+
     productService = module.get<ProductsService>(ProductsService);
+  });
+
+  afterAll(async () => {
+    if (mongod) {
+      await mongod.stop();
+    }
   });
 
   it('should create a product', () => {

@@ -10,7 +10,6 @@ import { ProductMongo, ProductMongoSchema } from './data/schemas/ProductSchema';
     MongooseModule.forFeature([
       { name: ProductMongo.name, schema: ProductMongoSchema },
     ]),
-    ProductMongo,
   ],
   providers: [ProductsService, ProductsRepository],
   controllers: [ProductsController],
