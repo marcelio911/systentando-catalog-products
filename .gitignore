@@ -8,6 +8,9 @@
 .idea/**/tasks.xml
 .idea/dictionaries
 
+lib/*
+functions/lib/*
+
 # Sensitive or high-churn files:
 .idea/**/dataSources/
 .idea/**/dataSources.ids
@@ -395,6 +398,12 @@ Temporary Items
 =======
 # Local
 .env
+.env*
+.env.prod*
+.env.dev*
 dist
+src/egg*
 .webpack
+*firebase*
 .serverless/**/*.zip
+yarn*

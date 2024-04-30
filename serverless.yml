@@ -1,0 +1,23 @@
+org: marcelio911
+service: product-catalog-scraping
+
+provider:
+  name: google
+  runtime: 'nodejs20.x'
+  project: my-project-1234 #google account project name
+  credentials: ~/.gcloud/keyfile.json # path must be absolute
+
+plugins:
+  - serverless-google-cloudfunctions
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+functions:
+  helloWorld:
+    handler: http
+    events:
+      - http: path
