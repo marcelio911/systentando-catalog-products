@@ -4,6 +4,7 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  Param,
   Post,
 } from '@nestjs/common';
 import { ProductsService } from '../services/products.service';
@@ -25,5 +26,11 @@ export class ProductsController {
   @Post('')
   async createProduct(@Body() product: ProductsDto): Promise<ProductsDto> {
     return this.productsService.createProduct(product);
+  }
+
+  @Get('importing/:query')
+  async importingProducts(@Param('query') query: string): Promise<ProductsDto> {
+    // TODO: request url to scraping product info
+    return this.productsService.importingProducts(query);
   }
 }

@@ -1,8 +1,8 @@
 import { ProductsDto } from '../../data/dtos/products-dto';
-import { ProductSchema } from '../../data/products-entity';
+import { Product } from '../../data/products-entity';
 
 export class ProductsMapper {
-  static transform(data: ProductSchema): ProductsDto {
+  static transform(data: Product): ProductsDto {
     const response = {
       _id: data._id,
       name: data.name,
@@ -26,13 +26,13 @@ export class ProductsMapper {
     };
     return response;
   }
-  static transformList(entities: ProductSchema[]): ProductsDto[] {
+  static transformList(entities: Product[]): ProductsDto[] {
     const response = entities.map((entity) => {
       return this.transform(entity);
     });
     return response;
   }
-  static schema(entity: ProductsDto): ProductSchema {
+  static schema(entity: ProductsDto): Product {
     const response = {
       _id: entity._id,
       name: entity.name,
@@ -49,7 +49,7 @@ export class ProductsMapper {
       height: entity.height,
       width: entity.width,
       length: entity.length,
-      quantity: entity.quantity,
+      quantity: entity.quantityInStock,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
       isDeleted: entity.isDeleted,

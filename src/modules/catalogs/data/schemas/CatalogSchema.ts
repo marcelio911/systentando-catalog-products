@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { CatalogSchema } from '../catalogs-entity/catalogs-entity';
-import { ProductSchema } from '../../../products/data/products-entity';
+import { Product } from '../../../products/data/products-entity';
 import * as mongoose from 'mongoose';
 
 export type CatalogMongoDocument = mongoose.HydratedDocument<CatalogMongo>;
@@ -14,7 +14,7 @@ export class CatalogMongo implements CatalogSchema {
   @Prop({ required: true })
   ownerId: string;
   @Prop({ required: true })
-  products: ProductSchema[];
+  products: Product[];
   @Prop({ required: true })
   createdAt: number;
   @Prop()

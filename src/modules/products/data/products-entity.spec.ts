@@ -1,8 +1,8 @@
-import { ProductSchema } from './products-entity';
+import { Product } from './products-entity';
 
 describe('ProductsEntity', () => {
   it('should be defined', () => {
-    const product: ProductSchema = {
+    const product: Product = {
       _id: '1',
       name: 'Product 1',
       description: 'Description of Product 1',

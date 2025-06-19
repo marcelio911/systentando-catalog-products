@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ProductSchema } from '../products-entity';
+import { Product } from '../products-entity';
 import * as mongoose from 'mongoose';
 
 export type ProductMongoDocument = mongoose.HydratedDocument<ProductMongo>;
 
 @Schema()
-export class ProductMongo implements ProductSchema {
+export class ProductMongo implements Product {
   @Prop({ type: String })
   _id: string;
   @Prop({ type: String, required: true, unique: true })

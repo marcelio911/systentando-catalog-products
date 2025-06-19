@@ -6,6 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { ProductsModule } from './modules/products/products.module';
 import { SuppliersModule } from './modules/suppliers/suppliers.module';
 import { CatalogsModule } from './modules/catalogs/catalogs.module';
+import { TaxesModule } from './modules/taxes/taxes.module';
+import { PaymentsModule } from './modules/payments/payments.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { CatalogsModule } from './modules/catalogs/catalogs.module';
     ProductsModule,
     SuppliersModule,
     CatalogsModule,
+    TaxesModule,
+    PaymentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

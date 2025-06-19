@@ -1,5 +1,5 @@
 import { ProductsService } from '../../../services/products.service';
-import { ProductSchema } from '../../../data/products-entity';
+import { Product } from '../../../data/products-entity';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductsRepository } from '../../../repository/products-repository';
 import { MongoMemoryServer } from 'mongodb-memory-server';
@@ -69,7 +69,7 @@ describe('ProductsUnit', () => {
   });
 
   it('should throw an error if url is not valid', () => {
-    const productData: ProductSchema = {
+    const productData: Product = {
       name: 'Product 1',
       description: '',
       price: 19.99,
